@@ -1,0 +1,48 @@
+{% extends 'url_shortener/header.html' %}
+
+
+{% block content %}
+<style type="text/css">
+	.link {
+    width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+</style>
+
+<div style = text-align:center; margin:auto;>
+	{% if user.is_authenticated %}
+		{% include "url_shortener/includes/create_urls.html" %}
+		<h2>List links</h2>
+		  <table class="table">
+		    <thead>
+		      <tr>
+		        <th>Full link</th>
+		        <th>Date</th>
+		        <th>Short link</th>
+		        <th>Count</th>
+		      </tr>
+		    </thead>
+			    <tbody>
+			      {% for link in urls %}
+			            <tr>
+			              <td><a href="{{link.full_link}}"><p class="link">{{link.full_link}}</p></a></td>
+			              <td>{{link.date_of_creations}}</td>
+			              <td><a href="{{link.short_link}}">{{link.short_link}}</a></td>
+			              <td>{{link.count}}</td>
+			            </tr>
+			      {% endfor %}
+			    </tbody>
+  			</table>
+	{% else %}
+	    <div class="jumbotron" style = "text-align:center; margin:auto;">
+		  <h1>Hello my friends!</h1>
+		  <p>Before you start, you need to register or login.</p>
+		  <a class="btn btn-primary btn-lg" href="registry/" role="button">Registrations</a>
+		  <a class="btn btn-success btn-lg" href="accounts/login" role="button">Login</a>
+		</div>	
+	{% endif %}
+</div>
+{% endblock content %}

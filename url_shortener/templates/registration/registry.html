@@ -1,0 +1,21 @@
+{% extends "url_shortener/header.html" %}
+
+{% block content %}
+	<div style="text-align:center; margin:auto;">
+		<h2>Registry</h2>
+		{% if form.errors %}
+      		<div class="alert alert-warning" role="alert">
+      			Errors
+      		</div>
+    {% endif %}
+	</div>
+
+	<form method="post">
+	    {% csrf_token %}
+	    {{ form.as_p }}
+	    <div style="text-align:center; margin:auto;">
+	    	<button type="submit" class = "btn btn-primary btn-lg" >Registry</button>
+	    </div >
+	</form>
+
+{% endblock content %}

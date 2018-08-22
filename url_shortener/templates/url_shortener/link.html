@@ -1,0 +1,9 @@
+{% extends 'url_shortener/header.html' %}
+{% block content %}
+<div style = "text-align:center; margin:auto;">
+	<td><a href="{{link}}">{{link}}</a></td>
+	<div class="col-auto">
+      	<a class="btn btn-primary btn-lg" href="/" role="button">Go to home page</a>
+    </div>
+</div>
+{% endblock content %}

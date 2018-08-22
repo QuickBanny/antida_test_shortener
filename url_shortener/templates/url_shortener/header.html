@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mayorov Pavel</title>
+	<meta charset="utf-8">
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'url_shortener/css/bootstrap.min.css' %}">
+
+</head>
+<body>
+
+	<style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    footer {
+    background-color: #f2f2f2;
+    /*position: absolute;*/
+    left: 0;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    overflow:hidden;
+    padding: 25px;
+     margin-top: 30px;
+}
+    .footer, .push {
+    height: 155px; /* .push must be the same height as .footer */
+}
+
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Test-Site</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    {% if user.is_authenticated %}
+        <p class="my-2 my-sm-0" style= "padding: 5px;">Hi, {{ user.username }}!</p>
+        <a href="{% url 'logout' %}"><button class="btn btn-outline-success my-2 my-sm-0" type="button">Logout</button></a>
+        {% else %}
+            <a href="{% url 'login' %}"><button class="btn btn-outline-success my-2 my-sm-0" type="button">Login</button></a>
+    {% endif %}
+
+  </div>
+</nav>
+
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>Welcome!</h1>      
+    <p>Website short link creation!</p>
+  </div>
+
+
+</div>
+
+	<div class="conteiner">
+    
+		{% block content %}
+		{% endblock %}
+	</div> 
+
+
+
+
+<footer class="container-fluid text-center" >
+  <p>© 2018 - Pavel Mayorov</p>
+</footer>
+
+
+
+</body>
+
+</html>
