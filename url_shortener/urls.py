@@ -1,9 +1,11 @@
 from django.urls import path
+from django.contrib.auth.decorators import login_required
 from . import views
 
 urlpatterns = [
-	path('', views.index, name='index'),
+	path('', views.HomeViews.as_view(), name='home'),
+	path('links/', views.LinkListView.as_view(), name='link-list'),
 	path('registry/', views.Registry.as_view(), name='registry'),
-	path('shorten_url/', views.shorten_url, name='shorten_url'),
+	path('short/', login_required(views.CreateShortViews.as_view()), name='short'),
 	path('<short_id>/', views.redirect_origin_url, name='redirect_origin_url')   
 ]
